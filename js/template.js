@@ -58,7 +58,7 @@
 	 * });
 	 */
 	Template.prototype.show = function (data) {
-		var i, l;
+		/*var i, l;
 		var view = '';
 
 		for (i = 0, l = data.length; i < l; i++) {
@@ -69,7 +69,20 @@
 			if (data[i].completed) {
 				completed = 'completed';
 				checked = 'checked';
+			}*/
+
+			var view = '';
+
+			for (var i = 0; i < data.length; i++) {
+			var template = this.defaultTemplate;
+			var completed = '';
+			var checked = '';
+
+			if (data[i].completed) {
+				completed = 'completed';
+				checked = 'checked';
 			}
+
 
 			template = template.replace('{{id}}', data[i].id);
 			template = template.replace('{{title}}', escape(data[i].title));
