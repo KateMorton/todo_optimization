@@ -85,23 +85,21 @@
 	    var dupId = true;
 	    var charset = "0123456789";
 
-        while(dupId){
+	    while(dupId){   
 	        for (var i = 0; i < 6; i++) {
-	     		newId += charset.charAt(Math.floor(Math.random() * charset.length));
+		     	newId += charset.charAt(Math.floor(Math.random() * charset.length));
 			}
 
-			for (var i = 0; i < todos.length; i++) {
-				if (newId != todos[i].id) {
-					console.log(newId);
-					console.log(todos[i].id);
-					dupId = false;
-				}
+			//if no items already on list set dupId to false
+			if(todos.length === 0){
+				dupId = false;
+			};
+		
+		    //check id not already in use
+		    for (var i = 0; i < todos.length; i++) {
+		    	newId === todos[i].id ? (dupId = true) : (dupId = false);
 			}
-
-			console.log(dupId);
 		}
-
-
 
 		// If an ID was actually given, find the item and update each property
 		if (id) {
