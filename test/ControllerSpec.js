@@ -153,15 +153,36 @@ describe('controller', function () {
 
 	it('should highlight "All" filter by default', function () {
 		// TODO: write test
+		var todo = {title: 'my todo'};
+		setUpModel([todo]);
+
+		subject._updateFilterState('');
+
+		expect(view.render).toHaveBeenCalledWith('setFilter', '');
 	});
 
 	it('should highlight "Active" filter when switching to active view', function () {
 		// TODO: write test
+		var todo = {title: 'my todo'};
+		setUpModel([todo]);
+
+		subject._updateFilterState('Active');
+
+		expect(view.render).toHaveBeenCalledWith('setFilter', 'Active');
 	});
 
 	describe('toggle all', function () {
 		it('should toggle all todos to completed', function () {
 			// TODO: write test
+			var todo = {id: 42, title: 'my todo', completed: true};
+			setUpModel([todo]);
+
+			subject.toggleComplete(todo.id, true, true);
+
+			expect(view.render).toHaveBeenCalledWith('elementComplete', {
+				id: 42,
+				completed: true
+			});
 		});
 
 		it('should update the view', function () {
