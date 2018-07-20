@@ -174,19 +174,31 @@ describe('controller', function () {
 	describe('toggle all', function () {
 		it('should toggle all todos to completed', function () {
 			// TODO: write test
-			var todo = {id: 42, title: 'my todo', completed: true};
+			var todo = {id: 42, title: 'my todo', completed: false};
 			setUpModel([todo]);
 
-			subject.toggleComplete(todo.id, true, true);
+			subject.setView('');
 
-			expect(view.render).toHaveBeenCalledWith('elementComplete', {
-				id: 42,
-				completed: true
-			});
+			subject.toggleAll(true);
+
+			expect(model.read).toHaveBeenCalled();
+			
 		});
 
 		it('should update the view', function () {
 			// TODO: write test
+			var todo = {id: 42, title: 'my todo', completed: false};
+			setUpModel([todo]);
+
+			subject.setView('');
+
+			subject._updateCount();
+
+			expect(view.render).toHaveBeenCalledWith('updateElementCount', 1);
+			expect(view.render).toHaveBeenCalledWith('clearCompletedButton', {
+				completed: 0,
+				visible: false
+			});
 		});
 	});
 
