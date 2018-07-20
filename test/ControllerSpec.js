@@ -205,6 +205,14 @@ describe('controller', function () {
 	describe('new todo', function () {
 		it('should add a new todo to the model', function () {
 			// TODO: write test
+			var todo = {title: 'my todo'};
+			setUpModel([todo]);
+
+			subject.setView('');
+
+			subject.addItem('my todo');
+
+			expect(model.create).toHaveBeenCalled();
 		});
 
 		it('should add a new todo to the view', function () {
@@ -245,6 +253,14 @@ describe('controller', function () {
 	describe('element removal', function () {
 		it('should remove an entry from the model', function () {
 			// TODO: write test
+			var todo = {id: 42, title: 'my todo', completed: false};
+			setUpModel([todo]);
+
+			subject.setView('');
+
+			subject.removeItem(42);
+
+			expect(model.remove).toHaveBeenCalled();
 		});
 
 		it('should remove an entry from the view', function () {
